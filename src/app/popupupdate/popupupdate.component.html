@@ -1,0 +1,39 @@
+<!-- Bouton pour ouvrir la popup -->
+<!--<button (click)="openPopup()">Ouvrir la Popup</button>-->
+
+<!-- La popup -->
+<div class="popup" *ngIf="showPopup">
+    <div class="popup-header">
+        <span (click)="closePopup()" class="close-button">X</span>
+    </div>
+  <div class="popup-content">
+    <label for="exercice" style="margin-left: 20px; margin-top: 10px;">Exercice</label>
+    <select name="exercice"  required> <!--[(ngModel)]="liasse.exercice"-->
+      <option *ngFor="let y of years" [value]="y" >{{y}}</option> <!--*ngFor="let y of years" [value]="y"-->
+    </select>
+
+    <label for="nature" style="margin-left: 10px;">Nature</label>
+    <select name="nature"  required><!--[(ngModel)]="liasse.nature"-->
+      <option value="initiale">Initiale</option>
+      <option value="rectificative">Rectificative</option>
+      <option value="cessation des activites">Cessation des activites</option>
+    </select>
+
+    <hr>
+    <h6>Type de Dépot:</h6>
+
+    <div>
+      <input type="radio" value="Definitif" checked name="typedepot"  required><!--[(ngModel)]="liasse.typeDepot"-->
+      <label for="definitif"  >Definitif</label>
+   
+
+    
+      <input type="radio" value="Provisoire" name="typedepot"  required style="margin-left: 10px;"><!--[(ngModel)]="liasse.typeDepot"-->
+      <label for="provisoire">Provisoire</label>
+    </div>
+
+    <!-- Bouton pour fermer la popup -->
+    <button class="btn btn-outline-primary" style="margin-left:40%; margin-top: 10px;">Update</button><!--(click)="closePopup()"-->
+  </div>
+</div>
+

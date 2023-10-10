@@ -1,0 +1,61 @@
+.formulaire{
+    border: 1px solid ;
+    width: 400px;
+    height:390px;
+    margin-top: 50px;
+    margin-left: 50px;
+   
+    
+   
+
+}
+
+.title{
+    background-color:#ff5500;
+    height: 90px;
+    padding-top: 15px;
+    text-align: center;
+    color: aliceblue;
+}
+
+.btn{
+    background-color: #ff5500;
+    color: aliceblue;
+    margin-left: 100px;
+    margin-top: 20px;
+    
+}
+
+span{
+    color:#6495ED ;
+}
+.body{
+    width: 500px;
+    height: 500px;
+    margin-left: 500px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.detail{
+    margin-left:40px;
+    margin-top: 20px;
+}
+
+input{
+ width: 300px;
+ height: 40px;
+}
+
+label{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+footer p{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #ff5500;
+}
+

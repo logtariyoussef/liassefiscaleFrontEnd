@@ -1,0 +1,108 @@
+<app-navbar></app-navbar>
+
+
+<div class="depots-table">
+    <h4 style="margin-left: 10px;">Liste des Dépots:</h4>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Situation de la liasse déposée</th>
+                <th>Excercice</th>
+                <th>Nature de Dépot</th>
+                <th>Provisoire/Définitif</th>
+                <th>Date de Dépot</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let trac of user.tracabilites ;let i=index">
+                <td><span [style.color]="trac.natureDepot==='confirmée' ? 'green' :'red' "><b>{{trac.natureDepot}}</b></span></td> <!---->
+                <td>{{trac.liassefiscale.exercice}}</td>
+                <td>{{trac.liassefiscale.nature}}</td>
+                <td>{{trac.liassefiscale.typeDepot}}</td>
+                <td>{{depotDate|date:'d/M/y'}}</td><!--trac.dateDepot-->
+                <td style="display: flex;"><button (click)="afficherDetails(i)" class="btn btn-outline-primary">Afficher</button>
+                    
+                       <button class="btn btn-outline-success" style="margin-left: 5px;" *ngIf="trac.natureDepot==='pas encore...'" (click)="confirmerLiasse(i)">confirmer</button>
+                        <button class="btn btn-outline-warning"  style="margin-left: 5px;" *ngIf="trac.natureDepot==='pas encore...'"(click)="ModifierLiasse(i)">Modifier</button>
+                  
+                   </td><!--(click)="confirmerLiasse(i)"-->
+            </tr>
+
+          
+            
+        </tbody>
+      </table>
+      
+</div>
+
+<div class="details_depot" *ngIf="detailDepo===true">
+    <h4>Détails du dépot:</h4>
+    <hr>
+    <p>Situation de la liasse déposée: <span [style.color]="depotNature==='confirmée' ? 'green' :'red' "><b>{{depotNature}}</b></span></p> <!---->
+    <p>Nombre de Fichiers déposés: <span>{{nombreDocs}}</span></p>
+    <p>Excercice: <span>{{liassefiscaleInfo.exercice}}</span></p>
+    <p>Nature Dépot: <span>{{liassefiscaleInfo.nature}}</span></p>
+    <p>Type de Dépot: <span>{{liassefiscaleInfo.typeDepot}}</span></p>
+    <p>Date de Dépot: <span>{{date|date:'d/M/y'}}</span></p>
+
+</div>
+
+<div class="table_documents" *ngIf="detailDoc===true">
+    <table class="table table-striped">
+        <thead>
+            <th>Nom Document</th>
+            <th>Nom Fichier</th>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let doc of documents ;let i=index"><!---->
+                <td>{{doc.libelle}}</td>
+                <td>{{doc.detailDoc.nomFichier}}</td>
+                <td><button class="btn btn-primary" (click)="download(doc.detailDoc.id,i)" style="margin-left: 5px;"><i class="fa fa-download" aria-hidden="true" ></i>      Télecharger</button></td>
+            </tr>
+          
+        </tbody>
+
+    </table>
+
+</div>
+<!--popup update-->
+<!-- La popup -->
+<!--
+<div class="popup" *ngIf="showPopupUpdate">
+    <div class="popup-header">
+        <span (click)="closePopup()" class="close-button">X</span>
+    </div>
+  <div class="popup-content">
+    <label for="exercice" style="margin-left: 20px; margin-top: 10px;">Exercice</label>
+    <select name="exercice"  required [(ngModel)]="liasseUpdated.exercice"> 
+      <option *ngFor="let y of years" [value]="y" >{{y}}</option> 
+    </select>
+
+    <label for="nature" style="margin-left: 10px;">Nature</label>
+    <select name="nature" [(ngModel)]="liasseUpdated.nature" required>
+      <option value="initiale">Initiale</option>
+      <option value="rectificative">Rectificative</option>
+      <option value="cessation des activites">Cessation des activites</option>
+    </select>
+
+    <hr>
+    <h6>Type de Dépot:</h6>
+
+    <div>
+      <input type="radio" value="Definitif"  name="typedepot"  required [(ngModel)]="liasseUpdated.typeDepot">
+   
+
+    
+      <input type="radio" value="Provisoire" name="typedepot"  required style="margin-left: 10px;" [(ngModel)]="liasseUpdated.typeDepot">
+      <label for="provisoire">Provisoire</label>
+    </div>
+
+    
+    <button class="btn btn-outline-primary" style="margin-left:40%; margin-top: 10px;" (click)="updateLiasse()">Update</button>
+  </div>--><!-- Bouton pour fermer la popup 
+</div>-->
+
+
+<app-footer></app-footer>

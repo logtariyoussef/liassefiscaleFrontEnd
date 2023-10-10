@@ -1,0 +1,15 @@
+
+
+version: '2.1'
+
+services:
+  angular-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    
+
+  
+

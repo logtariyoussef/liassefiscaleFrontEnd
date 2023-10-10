@@ -1,0 +1,26 @@
+
+<div class="body">
+    <div class="formulaire">
+        <form (ngSubmit)="onSubmit(myForm)"  #myForm="ngForm"><!--(ngSubmit)="onSubmit(myForm)"  #myForm="ngForm"-->
+            <div class="title">
+                <h2>Liasse Fiscale</h2>
+            </div>
+            <div class="detail">
+                <h4>Identification de l'adhérent</h4>
+    
+                <label for="identifiant">Identifiant <span>*</span></label>
+                <input type="text" name="identifiant" class="form-control" #identifiant="ngModel"  [(ngModel)]="matriculeUser" required  >
+               
+                
+        
+                <label for="mot de passe">mot de passe <span>*</span></label>
+                 <input type="password" name="mot de passe" class="form-control" #password="ngModel" [(ngModel)]="motdePasseUser" required ng-untouched ng-pristine ng-valid>
+                
+                 <button type="submit"  class="btn" [disabled]="! myForm.valid">Se connecter</button><!--(click)="getUserByMatricule()"-->
+            </div>
+           
+        </form>
+    </div>
+    <footer><p>2023 © <span>Centre Informatique du Ministére des Finances</span></p></footer>
+</div>
+

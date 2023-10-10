@@ -1,0 +1,39 @@
+.navbar {
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: #fff;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin-right: 100px;
+  }
+  
+  
+  
+  .nav-links a {
+    color: #fff;
+  
+    
+  }
+  
+  .btn {
+    background-color: #fff;
+    color: #ff5500;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cimflogo{
+   font-size: 25px;
+   font-weight: bold;
+   font-family: Arial, Helvetica, sans-serif;
+    
+  }

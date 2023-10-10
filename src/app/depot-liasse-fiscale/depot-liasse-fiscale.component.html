@@ -1,0 +1,122 @@
+
+<app-navbar></app-navbar>
+<h2>Déposer votre Liasse Fiscale:</h2>
+
+<div class="liasse-detail">
+    <form #form="ngForm"> <!--(ngSubmit)="onSubmit(form.value)" #form="ngForm"-->
+        <div class="typeliasse">
+            <h5>Type de la Liasse:</h5>
+            <div class="liasse">
+                <label for="type liasse">Liasse Fiscal <span>*</span></label>
+                <select class="form-select" name="categorie" [(ngModel)]="categorie" required>
+                   
+                    <option  *ngFor="let c of categorieLiasse" [ngValue]="c" >{{c.libelleCat}}</option>
+            
+                </select>
+            </div>
+           
+        </div>
+        <div class="liasse-detail2">
+            <h5 style="margin-top: 10px;">Relative à :</h5>
+           
+            <label for="exercice" style="margin-left: 20px;">Exercice <span>*</span></label>
+            <select name="exercice" [(ngModel)]="liasse.exercice" required>
+                <option *ngFor="let y of years" [value]="y">{{y}}</option>  
+            </select>
+
+            <label for="nature" style="margin-left: 10px;">Nature <span>*</span></label>
+            <select name="nature" [(ngModel)]="liasse.nature" required>
+                <option value="initiale">Initiale</option>
+                <option value="rectivicative">Rectivicative</option>
+                <option value="cessation des activites">Cessation des activites</option>
+            </select>
+
+                <hr>
+                <h6>Type de Dépot <span>*</span></h6> 
+               
+            
+                <div>
+                  <input type="radio"  value="Definitif" checked name="typedepot" [(ngModel)]="liasse.typeDepot" required><!--liasse.typeDepot-->
+                  <label for="definitif">Definitif</label>
+                </div>
+            
+                <div>
+                  <input type="radio"  value="Provisoire" name="typedepot" [(ngModel)]="liasse.typeDepot" required>
+                  <label for="provisoire">Provisoire</label>
+                </div>
+            
+                <p>Les champs  suivis d'un <span>*</span> sont obligatoires</p>
+           
+        </div>
+       
+       
+    </form>
+    <div class="doc-table">
+
+    <!--show this div if method name is create-->
+    <div class="doucments-details" *ngIf="methodName==='create'">
+        <button  class="btn btn-dark" (click)="onShowTable()" [disabled]="!form.valid"><i class="fa-solid fa-plus"></i></button><!--(click)=" onShowTable()" -->
+        <h5 style="margin-left: 5px;">Ajouter les documents nécessaires:</h5><!-- -->
+    </div>
+    <!--show this div if method name is update-->
+    <div class="doucments-details" *ngIf="methodName==='update'">
+        <button  class="btn btn-dark" (click)="updateLiasse()"><i class="fa-solid fa-plus"></i></button>
+        <h5 style="margin-left: 5px;">Update les documents:</h5><!-- -->
+    </div>
+    <div>
+        <button  (click)="deposerLiasse()" class="btn btn-success upload-btn" style="margin-left: 600px;"   >Uploader Liasse</button><!--[hidden]="showTable" -->
+        <!--[disabled]="isActivated"-->
+    </div>
+
+    <div class="documents-table" [hidden]="showTable"><!--[hidden]="showTable"-->
+        <table class="table table-striped" #tableDoc>
+            <thead>
+                <tr>
+                    <th>Document</th>
+                    <th>Code Document</th>
+                    <th>Nature Document</th>
+                    <th>Format</th>
+                    <th>Fichier a transférer</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+             
+
+                <tr *ngFor="let doc of documentTable; let i=index"><!--*ngFor="let i=index"-->
+                    <td>{{doc.libelle}}</td>
+                    <td>{{doc.code}}</td>
+                    <td>{{doc.natureDoc}}</td>
+                    <td>{{doc.formatDoc}}</td>
+                    <td><input type="file" (change)="onChange($event,i)"></td>
+                          <td><button (click)="addOrupdateFileToDoc(i)" class="btn btn-warning"><i class="fa-solid fa-upload"></i></button>
+                        <!---->
+                      <!--  (click)="addFileToDoc(i)" (click)="updateFileToDoc(i)" -->
+                    </td>
+                </tr>
+
+                
+                
+                
+            </tbody>
+          </table>
+          
+          
+         
+    </div> 
+    
+    </div>  
+    
+    
+</div>
+<!--<app-popup  (confirme)="confirmerLiasse($event)" *ngIf="showPopup"></app-popup>-->
+<!--html popup-->
+<div class="custom-popup" *ngIf="showPopup">
+    <h1>Confirmation</h1>
+    <p class="popuppara">Voulez-vous confirmer votre liasse fiscale ?</p>
+    <div class="button-container">
+      <button class="btn" (click)="confirm()">Oui</button><!---->
+      <button class="btn" (click)="cancel()">Pas maintenant</button><!-- -->
+    </div>
+  </div>
+<app-footer></app-footer>
